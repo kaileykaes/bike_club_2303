@@ -10,4 +10,12 @@ class Biker
     @rides = Hash.new {|hash_obj, key| hash_obj[key] = []}
     @acceptable_terrain = []
   end
+
+  def learn_terrain!(terrain)
+    @acceptable_terrain << terrain
+  end
+
+  def log_ride(ride, time) 
+    @rides[ride] << time
+  end
 end
