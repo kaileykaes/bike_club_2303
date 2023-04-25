@@ -28,7 +28,7 @@ RSpec.describe Ride do
       expect(@ride1.terrain).to eq(:hills)
       expect(@ride2.name).to eq('Town Lake')
       expect(@ride2.distance).to eq(14.9)
-      expect(@ride1.terrain).to eq(:gravel)
+      expect(@ride2.terrain).to eq(:gravel)
     end
   end
 end
