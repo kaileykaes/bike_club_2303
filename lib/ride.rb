@@ -16,10 +16,6 @@ class Ride
   end
 
   def total_distance
-    if loop? 
-      @distance
-    else
-      @distance * 2
-    end
+    loop? ? @distance : @distance * 2
   end
 end
