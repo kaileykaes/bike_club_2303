@@ -16,7 +16,13 @@ class Biker
   end
 
   def log_ride(ride, time) 
+    if know_terrain?(ride.terrain) && distance_capable?(ride)
       @rides[ride] << time
+    elsif !know_terrain?(ride.terrain) 
+      "#{@name} doesn't know this terrain yet"
+    elsif !distance_capable?(ride)
+      "#{@name} can't bike this distance"
+    end
   end
 
   def personal_record(ride)
