@@ -27,7 +27,11 @@ class Biker
   end
 
   def personal_record(ride)
-    @rides[ride].min
+    if !@rides.keys.include?(ride)
+      false
+    else
+      @rides[ride].min
+    end
   end
 
   #helpers
