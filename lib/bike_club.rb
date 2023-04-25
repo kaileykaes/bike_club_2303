@@ -23,9 +23,17 @@ class BikeClub
     @bikers.each do |biker|
       biker_rides[biker] = biker.rides.values.flatten 
     end
-    sir_rides_alot = biker_rides.max_by do |biker, times| 
+    sir_rides_alot = biker_rides.max_by do |_, times| 
       times.length
     end
     sir_rides_alot[0]
+  end
+
+  def best_time(ride) 
+    times_for_ride = {}
+    @bikers.each { |biker| times_for_ride[biker] = biker.personal_record(ride) }
+    require 'pry'; binding.pry
+    da_absolute_fastest = times_for_ride.max_by{|_, time| time } 
+    da_absolute_fastest[0]
   end
 end
