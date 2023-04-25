@@ -17,4 +17,15 @@ class BikeClub
       biker.know_terrain?(ride.terrain)
     end
   end
+
+  def most_rides
+    biker_rides = {}
+    @bikers.each do |biker|
+      biker_rides[biker] = biker.rides.values.flatten 
+    end
+    sir_rides_alot = biker_rides.max_by do |biker, times| 
+      times.length
+    end
+    sir_rides_alot[0]
+  end
 end
