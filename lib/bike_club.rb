@@ -31,9 +31,16 @@ class BikeClub
 
   def best_time(ride) 
     times_for_ride = {}
-    @bikers.each { |biker| times_for_ride[biker] = biker.personal_record(ride) }
-    require 'pry'; binding.pry
-    da_absolute_fastest = times_for_ride.min_by{|_, time| time } 
-    da_absolute_fastest[0]
+    @bikers.each do |biker| 
+      if biker.rides.keys.include?(ride)
+        times_for_ride[biker] = biker.personal_record(ride)
+      else
+        times_for_ride[biker] = 57000000.00
+      end
+    end
+    fastest = times_for_ride.min_by do |biker, time| 
+      time 
+    end
+    fastest[0]
   end
 end
