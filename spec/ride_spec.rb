@@ -31,4 +31,24 @@ RSpec.describe Ride do
       expect(@ride2.terrain).to eq(:gravel)
     end
   end
+
+  describe '#loop?' do 
+    it '#loop? can be false' do 
+      expect(@ride1.loop?).to be false
+    end
+
+    it '#loop? can be true' do 
+      expect(@ride2.loop?).to be true
+    end
+  end
+
+  describe '#total_distance' do 
+    it 'out and back trails #total_distance' do 
+      expect(@ride1.total_distance).to eq(21.4)
+    end
+    
+    it 'loop total distance' do 
+      expect(@ride2.total_distance).to eq(14.9)
+    end
+  end
 end
