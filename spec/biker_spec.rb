@@ -31,6 +31,8 @@ RSpec.describe Biker do
 
   describe 'rides' do 
     it '#log_ride' do 
+      @biker.learn_terrain!(:gravel)
+      @biker.learn_terrain!(:hills)
       @biker.log_ride(@ride1, 92.5)
       @biker.log_ride(@ride1, 91.1)
       @biker.log_ride(@ride2, 60.9)
@@ -42,6 +44,12 @@ RSpec.describe Biker do
     end
 
     it '#personal_record' do 
+      @biker.learn_terrain!(:gravel)
+      @biker.learn_terrain!(:hills)
+      @biker.log_ride(@ride1, 92.5)
+      @biker.log_ride(@ride1, 91.1)
+      @biker.log_ride(@ride2, 60.9)
+      @biker.log_ride(@ride2, 61.6)
       expect(@biker.personal_record(@ride1)).to eq(91.1)
       expect(@biker.personal_record(@ride2)).to eq(60.9)
     end
@@ -74,6 +82,19 @@ RSpec.describe Biker do
       })
       expect(@biker2.personal_record(@ride2)).to eq(65.0)
       expect(@biker2.personal_record(@ride1)).to be false
+    end
+  end
+
+  describe 'helers' do 
+    it '#know_terrain?' do 
+      expect(@biker2.know_terrain?(:gravel)).to be false
+      @biker2.learn_terrain!(:gravel)
+      expect(@biker2.know_terrain?(:gravel)).to be true
+    end
+
+    it 'distance_capable?' do 
+      expect(@biker2.distance_capable?(@ride1)).to be false
+      expect(@biker2.distance_capable?(@ride2)).to be true
     end
   end
 end

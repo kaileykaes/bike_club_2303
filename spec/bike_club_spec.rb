@@ -27,4 +27,20 @@ RSpec.describe BikeClub do
       expect(@bike_club1.bikers).to eq([@biker, @biker2])
     end
   end
+
+  describe 'eligibility' do 
+    it '#eligible_bikers' do 
+      @bike_club1.add_biker(@biker)
+      @bike_club1.add_biker(@biker2)
+      @biker.learn_terrain!(:gravel)
+      @biker.learn_terrain!(:hills)
+      expect(@bike_club1.eligible_bikers(@ride1)).to eq([@biker])
+      expect(@bike_club1.eligible_bikers(@ride2)).to eq([@biker])
+      @biker2.learn_terrain!(:gravel)
+      @biker2.learn_terrain!(:hills)
+      expect(@bike_club1.eligible_bikers(@ride1)).to eq([@biker])
+      expect(@bike_club1.eligible_bikers(@ride2)).to eq([@biker, @biker2])
+
+    end
+  end
 end
