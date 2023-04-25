@@ -33,7 +33,7 @@ class BikeClub
     times_for_ride = {}
     @bikers.each { |biker| times_for_ride[biker] = biker.personal_record(ride) }
     require 'pry'; binding.pry
-    da_absolute_fastest = times_for_ride.max_by{|_, time| time } 
+    da_absolute_fastest = times_for_ride.min_by{|_, time| time } 
     da_absolute_fastest[0]
   end
 end
