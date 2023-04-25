@@ -30,6 +30,8 @@ RSpec.describe BikeClub do
 
   describe 'most rides' do 
     it '#most_rides' do 
+      @bike_club1.add_biker(@biker)
+      @bike_club1.add_biker(@biker2)
       @biker.learn_terrain!(:gravel)
       @biker.learn_terrain!(:hills)
       @biker2.learn_terrain!(:gravel)
@@ -42,6 +44,7 @@ RSpec.describe BikeClub do
       @biker2.log_ride(@ride1, 91.1)
       @biker2.log_ride(@ride2, 60.9)
       @biker2.log_ride(@ride2, 61.6)
+      require 'pry'; binding.pry
       expect(@bike_club1.most_rides).to eq(@biker)
     end
   end
